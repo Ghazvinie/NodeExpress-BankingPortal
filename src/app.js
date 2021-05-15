@@ -42,7 +42,7 @@ app.get('/profile', (req, res) => {
 app.get('/', (req, res) => {
     res.render('index', {
         title: 'Accounts Summary',
-        accounts
+        accounts: accounts
     });
 
 });
