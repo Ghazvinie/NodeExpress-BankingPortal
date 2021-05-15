@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
+const { json } = require('body-parser');
 
 const app = express();
 
@@ -11,6 +12,8 @@ app.set('view engine', 'ejs');
 // Set static directory (don't need to use path.join())
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Handle POST data
+app.use(express.urlencoded({extended: true}));
 
 // Read account data
 const accountData = fs.readFileSync(path.join(__dirname, 'json', 'accounts.json'), 'utf8');
@@ -36,6 +39,21 @@ app.get('/credit', (req, res) => {
 // Profile route
 app.get('/profile', (req, res) => {
     res.render('profile', { user: users[0] });
+});
+
+// Transfer route
+app.get('/transfer', (req, res) => {
+    res.render('transfer');
+});
+
+app.post('/transfer', (req, res) => {
+    accounts[req.body.from].balance -= req.body.amount;
+    accounts[req.body.to] += parseInt(req.body.amount);
+    const accountsJson = JSON.stringify(accounts);
+
+    fs.writeFileSync(path.join(__dirname, '/json/accounts.json'), accountsJson, 'utf8');
+
+    res.render('transfer', { message: 'Transfer Completed' });
 });
 
 // Root route
