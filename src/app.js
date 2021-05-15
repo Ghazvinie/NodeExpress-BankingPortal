@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Handle POST data
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 // Read account data
 const accountData = fs.readFileSync(path.join(__dirname, 'json', 'accounts.json'), 'utf8');
@@ -47,9 +47,12 @@ app.get('/transfer', (req, res) => {
 });
 
 app.post('/transfer', (req, res) => {
-    accounts[req.body.from].balance -= req.body.amount;
-    accounts[req.body.to] += parseInt(req.body.amount);
+    console.log(accounts[req.body.to].balance);
+    accounts[req.body.from].balance -= parseInt(req.body.amount);
+    accounts[req.body.to].balance += parseInt(req.body.amount);
     const accountsJson = JSON.stringify(accounts);
+
+
 
     fs.writeFileSync(path.join(__dirname, '/json/accounts.json'), accountsJson, 'utf8');
 
@@ -68,13 +71,13 @@ app.post('/payment', (req, res) => {
 
     fs.writeFileSync(path.join(__dirname, '/json/accounts.json'), 'utf8');
 
-    res.render('payment', { message: "Payment Successful", account: accounts.credit});
+    res.render('payment', { message: "Payment Successful", account: accounts.credit });
 });
 
 // Root route
 app.get('/', (req, res) => {
-    res.render('index', { 
-        title: 'Account Summary', 
+    res.render('index', {
+        title: 'Account Summary',
         accounts
     });
 });
