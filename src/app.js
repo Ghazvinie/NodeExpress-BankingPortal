@@ -4,4 +4,4 @@ const express = require('express');
 
 const app = express();
 
-app.set('views', './views');
+app.set('views', path.join(__dirname, 'views'));
