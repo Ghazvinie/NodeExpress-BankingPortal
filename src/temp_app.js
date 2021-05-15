@@ -12,12 +12,8 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-// Read account data
-const accountData = fs.readFileSync('./json/accounts.json', {encoding: 'utf8'});
+const accountData = fs.readFileSync('json/accounts.json', {encoding: 'utf8'});
 const accounts = JSON.parse(accountData);
-
-// Read user data
-const userData = fs.readFileSync('./json/users.json')
 
 // Root route
 app.get('/', (req, res) => {
@@ -25,4 +21,4 @@ app.get('/', (req, res) => {
 
 });
 
-app.listen(3000, () => console.log('PS Project Running on Port 3000!'));
+app.listen(3000);
