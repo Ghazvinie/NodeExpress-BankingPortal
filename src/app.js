@@ -13,7 +13,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.get('/', (req, res) => {
-    res.render('index.ejs')
+    res.render('index.ejs', {title: 'Index'});
+
 });
 
 app.listen(8080);
