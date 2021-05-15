@@ -41,7 +41,7 @@ app.get('/profile', (req, res) => {
     res.render('profile', { user: users[0] });
 });
 
-// Transfer route
+// Transfer routes
 app.get('/transfer', (req, res) => {
     res.render('transfer');
 });
@@ -54,6 +54,21 @@ app.post('/transfer', (req, res) => {
     fs.writeFileSync(path.join(__dirname, '/json/accounts.json'), accountsJson, 'utf8');
 
     res.render('transfer', { message: 'Transfer Completed' });
+});
+
+// Payment routes
+app.get('/payment', (req, res) => {
+    res.render('payment', { account: accounts.credit });
+});
+
+app.post('/payment', (req, res) => {
+    accounts.credit.balance = parseInt(accounts.credit.balance - req.body.amount);
+    accounts.credit.available = parseInt(accounts.credit.available + req.body.amount);
+    const accountsJson = JSON.stringify(accounts);
+
+    fs.writeFileSync(path.join(__dirname, '/json/accounts.json'), 'utf8');
+
+    res.render('payment', { message: "Payment Successful", account: accounts.credit});
 });
 
 // Root route
