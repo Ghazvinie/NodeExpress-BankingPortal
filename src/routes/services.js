@@ -11,13 +11,12 @@ router.get('/transfer', (req, res) => {
 });
 
 router.post('/transfer', (req, res) => {
-    console.log(req.body);
-    // accounts[req.body.from].balance -= parseInt(req.body.amount);
-    // accounts[req.body.to].balance += parseInt(req.body.amount);
-    // const accountsJSON = JSON.stringify(accounts);
+    accounts[req.body.from].balance -= parseInt(req.body.amount);
+    accounts[req.body.to].balance += parseInt(req.body.amount);
+    const accountsJSON = JSON.stringify(accounts);
 
     // fs.writeFileSync(path.join(__dirname, '/json/accounts.json'), accountsJSON, 'utf8');
-    // writeJSON();
+    writeJSON();
 
     res.render('transfer', { message: 'Transfer Completed' });
 });
