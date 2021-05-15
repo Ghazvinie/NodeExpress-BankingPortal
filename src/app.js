@@ -13,11 +13,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Read account data
-const accountData = fs.readFileSync('./json/accounts.json', {encoding: 'utf8'});
+const accountData = fs.readFileSync(path.join(__dirname, 'json', 'accounts.json'), {encoding: 'utf8'});
 const accounts = JSON.parse(accountData);
 
 // Read user data
-const userData = fs.readFileSync('./json/users.json')
+const userData = fs.readFileSync(path.join(__dirname, 'json', 'users.json'), {encoding: "utf8"});
 
 // Root route
 app.get('/', (req, res) => {
