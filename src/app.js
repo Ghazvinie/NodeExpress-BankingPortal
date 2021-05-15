@@ -26,22 +26,23 @@ app.get('/savings', (req, res) => {
 });
 
 app.get('/checking', (req, res) => {
-    res.render('checking', { account: accounts.checking});
+    res.render('account', { account: accounts.checking});
 });
 
 app.get('/credit', (req, res) => {
-    res.render('credit', { account: accounts.credit});
+    res.render('account', { account: accounts.credit});
 });
 
+// Profile route
 app.get('/profile', (req, res) => {
-    res.render('profile', { user: users[0]});
+    res.render('account', { user: users[0]});
 });
 
 // Root route
 app.get('/', (req, res) => {
     res.render('index', {
         title: 'Accounts Summary',
-        account : accounts
+        accounts : accounts
     });
 
 });
