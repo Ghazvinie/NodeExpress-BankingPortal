@@ -39,6 +39,9 @@ app.get('/profile', (req, res) => {
 });
 
 // Root route
-app.get('/', (req, res) => res.render('index', { title: 'Account Summary', accounts: accounts }));
+app.get('/', (req, res) => {
+    res.render('index', { title: 'Account Summary', accounts: accounts });
+});
+
 
 app.listen(3000, () => console.log('PS Project Running on Port 3000!'));
