@@ -22,25 +22,28 @@ const users = JSON.parse(userData);
 
 // Account routes
 app.get('/savings', (req, res) => {
-    res.render('account', { account: accounts.savings});
+    res.render('account', { account: accounts.savings });
 });
 
 app.get('/checking', (req, res) => {
-    res.render('account', { account: accounts.checking});
+    res.render('account', { account: accounts.checking });
 });
 
 app.get('/credit', (req, res) => {
-    res.render('account', { account: accounts.credit});
+    res.render('account', { account: accounts.credit });
 });
 
 // Profile route
 app.get('/profile', (req, res) => {
-    res.render('account', { user: users[0]});
+    res.render('account', { user: users[0] });
 });
 
 // Root route
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Account Summary', accounts: accounts });
+    res.render('index', { 
+        title: 'Account Summary', 
+        accounts: accounts 
+    });
 });
 
 
