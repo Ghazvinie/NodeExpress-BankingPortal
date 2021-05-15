@@ -1,7 +1,8 @@
 const express = require('express');
+const router = express.Router();
+
 const { accounts, writeJSON } = require('../data');
 
-const router = express.Router();
 
 
 // Transfer routes
@@ -10,12 +11,13 @@ router.get('/transfer', (req, res) => {
 });
 
 router.post('/transfer', (req, res) => {
-    accounts[req.body.from].balance -= parseInt(req.body.amount);
-    accounts[req.body.to].balance += parseInt(req.body.amount);
-    const accountsJSON = JSON.stringify(accounts);
+    console.log(req.body);
+    // accounts[req.body.from].balance -= parseInt(req.body.amount);
+    // accounts[req.body.to].balance += parseInt(req.body.amount);
+    // const accountsJSON = JSON.stringify(accounts);
 
     // fs.writeFileSync(path.join(__dirname, '/json/accounts.json'), accountsJSON, 'utf8');
-    writeJSON();
+    // writeJSON();
 
     res.render('transfer', { message: 'Transfer Completed' });
 });
