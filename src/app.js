@@ -17,4 +17,4 @@ app.get('/', (req, res) => {
 
 });
 
-app.listen(8080);
+app.listen(3000, () => console.log('PS Project Running on Port 3000!'));
